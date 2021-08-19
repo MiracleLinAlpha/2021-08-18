@@ -75,21 +75,10 @@
             <groupId>aliyun</groupId>
             <artifactId>asapi</artifactId>
             <version>0.0.8.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/asapi-0.0.8.1-RELEASE.jar</systemPath>
         </dependency>
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>lib</directory>
-                <targetPath>/lib/</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-            </resource>
-        </resources>
 
         <plugins>
             <plugin>
@@ -102,7 +91,7 @@
                     <archive>
                         <manifest>
                             <!--注意，此处必须是main()方法对应类的完整路径  -->
-                            <mainClass>CloudMonitor_ECS_08_13_modify_1</mainClass>
+                            <mainClass>main.sortOutUsersList</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -117,39 +106,6 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>main.CloudMonitor_ECS_08_04</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                            <overWriteReleases>false</overWriteReleases>
-                            <overWriteSnapshots>false</overWriteSnapshots>
-                            <overWriteIfNewer>true</overWriteIfNewer>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
